@@ -2,6 +2,21 @@
 
 class util
 {
+    /**
+     * 指定するメソッド以外はエラーにする
+     */
+    public static function guardByMethod($expectMethod)
+    {
+        $expectMethod = strtoupper($expectMethod);
+        if ($expectMethod !== strtoupper($_SERVER["REQUEST_METHOD"])) {
+            /* 期待するメソッドじゃない */
+            util::sendResponse([
+                'error' => 'メソッドが' . $expectMethod . 'じゃない',
+            ]);
+            exit();
+        }
+    }
+
     public static function getRequestJsonObj()
     {
         return json_decode(file_get_contents('php://input'), true);

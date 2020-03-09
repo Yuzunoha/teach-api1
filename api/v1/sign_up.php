@@ -18,14 +18,7 @@ password_confirmation: passwordConfirmation
 
 require_once './util.php';
 
-// postかどうか
-if ('post' !== strtolower($_SERVER["REQUEST_METHOD"])) {
-    /* postじゃない */
-    util::sendResponse([
-        'error' => 'メソッドがpostじゃない',
-    ]);
-    exit();
-}
+util::guardByMethod('POST');
 
 $o = util::getRequestJsonObj();
 

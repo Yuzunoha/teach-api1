@@ -1,0 +1,101 @@
+～SNS API課題～
+バッチさんが作ったSNSのAPIを叩きまくる課題です(0,1期生も元気よく叩いています)。
+全てのAPIを利用できるようにフロントエンドを実装してください。
+各エンドポイントのレスポンスをconsole.logで出力してください。
+UIは必要最低限で構いません。むしろ必要最低限でお願いします。
+リクエストヘッダには Content-Type: application/json を含めてください。
+また、"headerにtoken入れる"という注釈があるAPIはリクエストヘッダにベアラートークンを含めることが必須のAPIです。
+ベアラートークンはユーザ登録またはログインのAPIを叩くとサーバからのレスポンスで取得できます。
+ベアラートークンはリクエストヘッダに下記のように含めます。
+Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ベアラートークンはローカルストレージに保存するとよいでしょう(ネット上で賛否はありますが)。
+ベアラートークン以外の各種の値はinputタグから入力できるようにしてください。
+query parameterの送信は課題において実装必須ですが省略するとデフォルト値で動きます。
+[ユーザー登録]
+POST: https://teachapi.herokuapp.com/sign_up
+パラメーターが
+body parameterで
+{
+    sign_up_user_params: {
+      name: name,
+      bio: bio,
+      email: email,
+      password: password,
+      password_confirmation: passwordConfirmation
+    }
+}
+※既に登録されているemailを送信するとエラーになります
+[ユーザーログイン]
+POST: https://teachapi.herokuapp.com/sign_in
+パラメーターが
+body parameterで
+{
+    sign_in_user_params: {
+      email: email,
+      password: password,
+      password_confirmation: passwordConfirmation
+    }
+}
+[ユーザー一覧]
+GET https://teachapi.herokuapp.com/users
+パラメーターが
+query parameterで
+page: ページの番号(数字)
+limit: 1ページあたり何個あるか
+query: 単語を入れると検索できる
+headerにtoken入れる
+[投稿一覧]
+GET https://teachapi.herokuapp.com/posts
+query parameterで
+page: ページの番号(数字)
+limit: 1ページあたり何個あるか
+query: 単語を入れると検索できる
+headerにtoken入れる
+[ユーザー編集]
+PUT https://teachapi.herokuapp.com/users/{id}
+body parameterで
+{
+    user_params: {
+      name: name,
+      bio: bio,
+    }
+}
+headerにtoken入れる
+※tokenの持ち主しか編集できません
+[ユーザー削除]
+DELETE https://teachapi.herokuapp.com/users/{id}
+headerにtoken入れる
+※tokenの持ち主しか削除できません
+[ユーザーのタイムライン]
+GET https://teachapi.herokuapp.com/users/{id}/timeline
+query parameterで
+page: ページの番号(数字)
+limit: 1ページあたり何個あるか
+query: 単語を入れると検索できる
+headerにtoken入れる
+※query parameterは課題において実装必須ですが省略しても動きます
+[投稿作成]
+POST: https://teachapi.herokuapp.com/posts
+パラメーターが
+body parameterで
+{
+    post_params: {
+      text: text
+    }
+}
+headerにtoken入れる
+[投稿編集]
+PUT: https://teachapi.herokuapp.com/posts/{id}
+パラメーターが
+body parameterで
+{
+    post_params: {
+      text: text
+    }
+}
+headerにtoken入れる
+※自分の投稿しか編集できません
+[投稿削除]
+DELETE: https://teachapi.herokuapp.com/posts/{id}
+headerにtoken入れる
+※自分の投稿しか削除できません

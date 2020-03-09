@@ -1,3 +1,7 @@
 <?php
 
-echo "sign_up.phpです";
+require_once './util.php';
+
+$o = util::getRequestJsonObj();
+
+util::sendResponse($o);

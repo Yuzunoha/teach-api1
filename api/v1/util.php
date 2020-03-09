@@ -15,12 +15,14 @@ class util
     }
 
     /**
-     * クエリストリングを辞書に分解する。先頭の?は削って渡すべし。
-     * keyc=ccc&keyd=ddd ... [keyc] => ccc, [keyd] => ddd
+     * クエリストリングを辞書で取得する
+     * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
+     * [keyc] => ccc, [keyd] => ddd
      */
-    public static function getQSDict($qs)
+    public static function getQSDict($url)
     {
         $dict = [];
+        $qs = explode('?', $url)[1];
         $keyValues = explode('&', $qs);
         foreach ($keyValues as $keyValue) {
             $a = explode('=', $keyValue);

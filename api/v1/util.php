@@ -17,11 +17,17 @@ class util
         }
     }
 
+    /**
+     * リクエストのJSONのオブジェクトを取得する
+     */
     public static function getRequestJsonObj()
     {
         return json_decode(file_get_contents('php://input'), true);
     }
 
+    /**
+     * PHPの配列オブジェクトをレスポンスとして返す
+     */
     public static function sendResponse($obj)
     {
         header('Access-Control-Allow-Origin: *');

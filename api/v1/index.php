@@ -2,4 +2,4 @@
 
 require_once './util.php';
 
-util::sendResponse("拡張子指定なしでここが呼ばれるか確認");
+util::sendResponse($_SERVER['REQUEST_URI']);

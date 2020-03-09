@@ -3,6 +3,18 @@
 class util
 {
     /**
+     * urlのパスを取得する
+     * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
+     * [0] => aaa, [1] => 123, [2] => bbb
+     */
+    public static function getPathArray($url)
+    {
+        $s = explode('v1/', $url)[1];
+        $s = explode('?', $s)[0];
+        return explode('/', $s);
+    }
+
+    /**
      * クエリストリングを辞書に分解する。先頭の?は削って渡すべし。
      * keyc=ccc&keyd=ddd ... [keyc] => ccc, [keyd] => ddd
      */

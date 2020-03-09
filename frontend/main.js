@@ -1,4 +1,4 @@
-const url = 'http://localhost:10080/teach-api1/api/v1';
+const url = 'http://localhost:10080/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd';
 
 const array = [
   'あいう',

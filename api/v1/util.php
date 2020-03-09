@@ -3,6 +3,23 @@
 class util
 {
     /**
+     * クエリストリングを辞書に分解する。先頭の?は削って渡すべし。
+     * keyc=ccc&keyd=ddd ... [keyc] => ccc, [keyd] => ddd
+     */
+    public static function getQSDict($qs)
+    {
+        $dict = [];
+        $keyValues = explode('&', $qs);
+        foreach ($keyValues as $keyValue) {
+            $a = explode('=', $keyValue);
+            $key = $a[0];
+            $value = $a[1];
+            $dict[$key] = $value;
+        }
+        return $dict;
+    }
+
+    /**
      * 指定するメソッド以外はエラーにする
      */
     public static function guardByMethod($expectMethod)

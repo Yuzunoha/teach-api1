@@ -1,4 +1,4 @@
-const url = 'http://localhost:10080/teach-api1/api/v1/sign_up.php';
+const url = 'http://localhost:10080/teach-api1/api/v1';
 
 const array = [
   'あいう',

@@ -7,30 +7,26 @@ class util
 {
     /**
      * urlのパスを取得する
-     * 
-     * $url : '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
-     * 
+     * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
      * [0] => aaa, [1] => 123, [2] => bbb
      */
-    public static function getPathArray($url)
+    public static function getPathArray()
     {
         $baseDirName = array_pop(explode('/', dirname(__FILE__)));
-        $s = explode($baseDirName . '/', $url)[1];
+        $s = explode($baseDirName . '/', $_SERVER['REQUEST_URI'])[1];
         $s = explode('?', $s)[0];
         return explode('/', $s);
     }
 
     /**
      * クエリストリングを辞書で取得する
-     * 
-     * $url : '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
-     * 
+     * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
      * [keyc] => ccc, [keyd] => ddd
      */
-    public static function getQSDict($url)
+    public static function getQSDict()
     {
         $dict = [];
-        $qs = explode('?', $url)[1];
+        $qs = explode('?', $_SERVER['REQUEST_URI'])[1];
         $keyValues = explode('&', $qs);
         foreach ($keyValues as $keyValue) {
             $a = explode('=', $keyValue);

@@ -1,22 +1,30 @@
 <?php
 
+/**
+ * このファイルはルーティングを行うため、.htaccessと同じディレクトリに置く
+ */
 class util
 {
     /**
      * urlのパスを取得する
-     * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
+     * 
+     * $url : '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
+     * 
      * [0] => aaa, [1] => 123, [2] => bbb
      */
     public static function getPathArray($url)
     {
-        $s = explode('v1/', $url)[1];
+        $baseDirName = array_pop(explode('/', dirname(__FILE__)));
+        $s = explode($baseDirName . '/', $url)[1];
         $s = explode('?', $s)[0];
         return explode('/', $s);
     }
 
     /**
      * クエリストリングを辞書で取得する
-     * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
+     * 
+     * $url : '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
+     * 
      * [keyc] => ccc, [keyd] => ddd
      */
     public static function getQSDict($url)

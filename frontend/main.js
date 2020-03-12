@@ -1,4 +1,8 @@
-const url = 'http://localhost:10080/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd';
+
+const baseUrl = 'http://localhost:10080/yuzunoha/teach-api1/api/v1/';
+const url = baseUrl + 'aaa/123/bbb?keyc=ccc&keyd=ddd';
+
+console.log(url);
 
 const array = [
   'あいう',

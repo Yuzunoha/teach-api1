@@ -63,5 +63,6 @@ class util
         header('Access-Control-Allow-Methods: *');
 
         echo json_encode($obj, JSON_UNESCAPED_UNICODE);
+        exit();
     }
 }

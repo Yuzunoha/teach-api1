@@ -1,11 +1,6 @@
 <?php
 
 require_once './util.php';
+require_once './Router.php';
 
-$path = util::getPathArray();
-$qs = util::getQSDict();
-
-util::sendResponse([
-    "path" => $path,
-    "qs" => $qs,
-]);
+Router::route();

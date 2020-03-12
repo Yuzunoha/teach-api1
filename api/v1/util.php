@@ -38,18 +38,11 @@ class util
     }
 
     /**
-     * 指定するメソッド以外はエラーにする
+     * メソッド取得(大文字化)
      */
-    public static function guardByMethod($expectMethod)
+    public static function getMethod()
     {
-        $expectMethod = strtoupper($expectMethod);
-        if ($expectMethod !== strtoupper($_SERVER['REQUEST_METHOD'])) {
-            /* 期待するメソッドじゃない */
-            util::sendResponse([
-                'error' => 'メソッドが' . $expectMethod . 'じゃない',
-            ]);
-            exit();
-        }
+        return strtoupper($_SERVER['REQUEST_METHOD']);
     }
 
     /**

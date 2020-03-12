@@ -7,6 +7,8 @@ class SignUpController
 {
     public static function post()
     {
-        util::sendResponse(SignUpModel::test());
+        $result = SignUpModel::signUp();
+
+        util::sendResponse($result);
     }
 }

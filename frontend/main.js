@@ -1,6 +1,6 @@
 
 const baseUrl = 'http://localhost:10080/yuzunoha/teach-api1/api/v1/';
-const url = baseUrl + 'aaa/123/bbb?keyc=ccc&keyd=ddd';
+const url = baseUrl + 'sign_up';
 
 console.log(url);
 

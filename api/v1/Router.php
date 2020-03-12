@@ -1,8 +1,8 @@
 <?php
 
 require_once './util.php';
-require_once './signup/SignUpController.php';
-require_once './common/CommonController.php';
+require_once './controllers/SignUpController.php';
+require_once './controllers/CommonController.php';
 
 class Router
 {

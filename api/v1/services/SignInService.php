@@ -7,6 +7,8 @@ class SignInService
 {
     public static function signIn($body)
     {
+        return "サインインサービス";
+
         $email = $body['sign_in_user_params']['email'];
         $password = $body['sign_in_user_params']['password'];
         $passwordConfirmation = $body['sign_in_user_params']['password_confirmation'];

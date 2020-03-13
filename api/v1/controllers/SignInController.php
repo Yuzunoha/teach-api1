@@ -7,9 +7,12 @@ class SignInController
 {
     public static function post()
     {
-        util::sendResponse("サインインコントローラ");
-
         $body = util::getRequestJsonObj();
-        SignInService::signIn($body);
+        $result = SignInService::signIn($body);
+        if ($result instanceof YuzunohaSnsError) {
+            util::sendResponse($result->getBody(), $result->statusCode);
+        }
+        // unset($result['password_hash']);
+        util::sendResponse($result);
     }
 }

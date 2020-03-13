@@ -1,6 +1,6 @@
 'use strict';
 
-const baseUrl = 'http://localhost:10080/yuzunoha/teach-api1/';
+const baseUrl = 'http://localhost:10080/yuzunoha/teach-api1/api/v1/';
 const urlSignUp = baseUrl + 'sign_up';
 const urlSignIn = baseUrl + 'sign_in';
 const urlUsers = baseUrl + 'users';

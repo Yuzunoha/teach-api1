@@ -12,7 +12,7 @@ class SignInController
         if ($result instanceof YuzunohaSnsError) {
             util::sendResponse($result->getBody(), $result->statusCode);
         }
-        // unset($result['password_hash']);
+        unset($result['password_hash']);
         util::sendResponse($result);
     }
 }

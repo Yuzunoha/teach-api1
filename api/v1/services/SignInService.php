@@ -7,8 +7,6 @@ class SignInService
 {
     public static function signIn($body)
     {
-        return "サインインサービス";
-
         $email = $body['sign_in_user_params']['email'];
         $password = $body['sign_in_user_params']['password'];
         $passwordConfirmation = $body['sign_in_user_params']['password_confirmation'];
@@ -28,7 +26,23 @@ class SignInService
         }
 
         // 存在確認(email & password)
-        $user = YuzunohaSnsUser::selectWhereEmail($email)[0];
+        $selectResult = YuzunohaSnsUser::selectWhereEmail($email);
+        $isError = false;
+        if (0 === count($selectResult)) {
+            /* emailが存在しない */
+            $isError = true;
+        } else {
+            /* emailが存在する */
+            $user = $selectResult[0];
+            if (hash('sha256', $password) !== $user['password_hash']) {
+                /* emailが存在するが、パスワードが違う */
+                $isError = true;
+            }
+        }
+        if ($isError) {
+            return new YuzunohaSnsError('emailとpasswordの組が存在しません', 400);
+        }
+        /* ここではuserがいる */
         return $user;
     }
 }

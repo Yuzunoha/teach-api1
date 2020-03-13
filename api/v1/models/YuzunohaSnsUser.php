@@ -39,4 +39,22 @@ class YuzunohaSnsUser
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function selectOrderByIdDesc($limit = 25)
+    {
+        $sql = 'select * from yuzunoha_sns_user ';
+        $sql .= 'ORDER BY id DESC ';
+        $sql .= 'LIMIT :limit';
+        $stmt = Db::getPdo()->prepare($sql);
+        $params = [
+            'limit' => [$limit, PDO::PARAM_INT],
+        ];
+        foreach ($params as $key => $ary) {
+            $value = $ary[0];
+            $type = $ary[1];
+            $stmt->bindValue(':limit', $value, $type);
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

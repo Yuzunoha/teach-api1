@@ -41,7 +41,7 @@ class Db
             foreach ($params as $key => $ary) {
                 $value = $ary[0];
                 $type = $ary[1];
-                $stmt->bindValue(':limit', $value, $type);
+                $stmt->bindValue($key, $value, $type);
             }
         }
         $result = $stmt->execute();

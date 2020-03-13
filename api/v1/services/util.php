@@ -68,6 +68,28 @@ class util
     }
 
     /**
+     * ページング
+     */
+    public static function pageing(array $a, int $page, int $limit): array
+    {
+        if ($page <= 0) {
+            $page = 1;
+        }
+        if ($limit <= 0) {
+            $limit = 25;
+        }
+
+        $startIdx = $limit * ($page - 1);
+        $endIdx = ($limit * $page) - 1;
+
+        $b = [];
+        for ($i = $startIdx; $i <= $endIdx && $i < count($a); $i++) {
+            $b[] = $a[$i];
+        }
+        return $b;
+    }
+
+    /**
      * PHPの配列オブジェクトをレスポンスとして返す
      */
     public static function sendResponse($obj, $statusCode = 200)

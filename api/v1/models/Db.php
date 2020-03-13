@@ -29,4 +29,27 @@ class Db
             ]);
         }
     }
+
+    /**
+     * sqlを実行するラッパー関数
+     */
+    public static function prepareAndExecute($sql, $params = null, $isUpdate = false)
+    {
+        $stmt = Db::getPdo()->prepare($sql);
+        if (isset($params)) {
+            /* パラメタがある */
+            foreach ($params as $key => $ary) {
+                $value = $ary[0];
+                $type = $ary[1];
+                $stmt->bindValue(':limit', $value, $type);
+            }
+        }
+        $result = $stmt->execute();
+        if ($isUpdate) {
+            /* 更新系 */
+            return $result;
+        }
+        /* 参照系 */
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

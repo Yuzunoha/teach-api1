@@ -2,10 +2,16 @@
 
 require_once dirname(__FILE__) . '/Db.php';
 
-class SignUpModel
+class YuzunohaSnsUser
 {
-    public static function signUp()
+    public static function insert($name, $bio, $password)
     {
+        // 書き中
+        $password_hash = hash('sha256', $password);
+        $secret = 'ユズノハさんだよ';
+        $tokenSeed = $password_hash . microtime() . $secret;
+        $token = hash('sha256', $tokenSeed);
+
         $sql = 'insert into yuzunoha_sns_user ';
         $sql .= '(name, bio, password_hash, token) ';
         $sql .= 'values (:name, :bio, :password_hash, :token)';

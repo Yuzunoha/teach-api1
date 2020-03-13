@@ -14,6 +14,23 @@ class UsersService
             /* queryなし */
             $users = YuzunohaSnsUser::selectAll();
         }
-        return $users;
+
+        $page = intval($qsDict['page']);
+        $limit = intval($qsDict['limit']);
+        if ($page <= 0) {
+            $page = 1;
+        }
+        if ($limit <= 0) {
+            $limit = 25;
+        }
+
+        $startIdx = $limit * ($page - 1);
+        $endIdx = ($limit * $page) - 1;
+
+        $a = [];
+        for ($i = $startIdx; $i <= $endIdx && $i < count($users); $i++) {
+            $a[] = $users[$i];
+        }
+        return $a;
     }
 }

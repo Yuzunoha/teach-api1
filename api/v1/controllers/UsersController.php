@@ -12,7 +12,7 @@ class UsersController
         YuzunohaSnsAuthorization::authTokenAndSendErrorResponse($tokenFromRequestHeader);
         /* 認証OK */
         $qsDict = util::getQsDict();
-        $result = UsersService::get($qsDict);
-        util::sendResponse($result);
+        $users = UsersService::get($qsDict);
+        util::sendResponse($users);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 require_once dirname(__FILE__) . '/../services/util.php';
-require_once dirname(__FILE__) . '/../services/UsersService.php';
+require_once dirname(__FILE__) . '/../services/YuzunohaSnsAuthorization.php';
 
 class UsersController
 {
@@ -10,7 +10,7 @@ class UsersController
         $qsDict = util::getQSDict();
         $tokenFromRequestHeader = util::getTokenFromRequestHeader();
 
-        $result = UsersService::getUsers($tokenFromRequestHeader, $qsDict);
-        util::sendResponse($tokenFromRequestHeader);
+        $result = YuzunohaSnsAuthorization::auth($tokenFromRequestHeader);
+        util::sendResponse($result);
     }
 }

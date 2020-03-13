@@ -52,4 +52,13 @@ class YuzunohaSnsUser
         ];
         return Db::prepareAndExecute($sql, $params);
     }
+
+    public static function selectWhereToken($token)
+    {
+        $sql = 'select * from yuzunoha_sns_user where token = :token';
+        $params = [
+            ':token' => [$token, PDO::PARAM_STR],
+        ];
+        return Db::prepareAndExecute($sql, $params);
+    }
 }

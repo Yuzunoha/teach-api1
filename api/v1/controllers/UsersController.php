@@ -7,10 +7,8 @@ class UsersController
 {
     public static function get()
     {
-        $qsDict = util::getQSDict();
         $tokenFromRequestHeader = util::getTokenFromRequestHeader();
-
-        $result = YuzunohaSnsAuthorization::auth($tokenFromRequestHeader);
-        util::sendResponse($result);
+        YuzunohaSnsAuthorization::authTokenAndSendErrorResponse($tokenFromRequestHeader, '19');
+        util::sendResponse("認証OK");
     }
 }

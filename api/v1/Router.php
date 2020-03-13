@@ -1,6 +1,6 @@
 <?php
 
-require_once './util.php';
+require_once './services/util.php';
 require_once './controllers/SignUpController.php';
 require_once './controllers/CommonController.php';
 

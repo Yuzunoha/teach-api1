@@ -12,7 +12,9 @@ class util
      */
     public static function getPathArray()
     {
-        $baseDirName = array_pop(explode('/', dirname(__FILE__)));
+        $ary = explode('/', dirname(__FILE__));
+        $len = count($ary);
+        $baseDirName = $ary[$len - 2]; // このファイルのルートからのパスによる
         $s = explode($baseDirName . '/', $_SERVER['REQUEST_URI'])[1];
         $s = explode('?', $s)[0];
         return explode('/', $s);

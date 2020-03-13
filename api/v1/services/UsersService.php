@@ -1,15 +1,19 @@
 <?php
 
+require_once dirname(__FILE__) . '/../models/YuzunohaSnsUser.php';
+
 class UsersService
 {
-  public static function get($qsDict)
-  {
-    $query = $qsDict['query'];
-    if ($query) {
-      /* queryあり */
-    } else {
-      /* queryなし */
+    public static function get($qsDict)
+    {
+        $query = $qsDict['query'];
+        if ($query) {
+            /* queryあり */
+            $users = YuzunohaSnsUser::selectWhereLikeQuery($query);
+        } else {
+            /* queryなし */
+            $users = YuzunohaSnsUser::selectAll();
+        }
+        return $users;
     }
-    return "queryチェックしたよー";
-  }
 }

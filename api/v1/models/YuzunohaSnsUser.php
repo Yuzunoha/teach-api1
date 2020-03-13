@@ -59,4 +59,14 @@ class YuzunohaSnsUser
         ];
         return Db::prepareAndExecute($sql, $params);
     }
+
+    public static function selectWhereLikeQuery($query)
+    {
+        $sql = 'SELECT * FROM yuzunoha_sns_user WHERE CONCAT(name, bio, email) like :likeQuery';
+        $likeQuery = '%' . $query . '%';
+        $params = [
+            ':likeQuery' => [$likeQuery, PDO::PARAM_STR],
+        ];
+        return Db::prepareAndExecute($sql, $params);
+    }
 }

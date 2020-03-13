@@ -56,6 +56,18 @@ class util
     }
 
     /**
+     * 送られてきたべアラートークンを取得する
+     * '7818eab792b3f292bcb650a73408c2da1bbd8a9e1be367a3d4477dba9f842211'
+     */
+    public static function getTokenFromRequestHeader()
+    {
+        $allheaders = getallheaders();
+        $authorization = $allheaders['Authorization'];
+        $token = explode(' ', $authorization)[1];
+        return $token;
+    }
+
+    /**
      * PHPの配列オブジェクトをレスポンスとして返す
      */
     public static function sendResponse($obj, $statusCode = 200)

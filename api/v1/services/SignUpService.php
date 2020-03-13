@@ -4,9 +4,9 @@ require_once dirname(__FILE__) . '/../models/YuzunohaSnsUser.php';
 
 class SignUpService
 {
-    public static function signUp()
+    public static function signUp($body)
     {
         // test
-        return YuzunohaSnsUser::selectOrderByIdDesc(4);
+        return $body;
     }
 }

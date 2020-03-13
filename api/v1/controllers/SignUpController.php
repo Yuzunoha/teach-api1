@@ -7,8 +7,8 @@ class SignUpController
 {
     public static function post()
     {
-        $result = SignUpService::signUp();
-
+        $body = util::getRequestJsonObj();
+        $result = SignUpService::signUp($body);
         util::sendResponse($result);
     }
 }

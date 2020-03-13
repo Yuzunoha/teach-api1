@@ -4,7 +4,7 @@ const baseUrl = 'http://localhost:10080/yuzunoha/teach-api1/';
 const urlSignUp = baseUrl + 'sign_up';
 const urlSignIn = baseUrl + 'sign_in';
 const urlUsers = baseUrl + 'users';
-const urlUsers = baseUrl + 'posts';
+const urlPosts = baseUrl + 'posts';
 
 const updateProfileTagByLocalStorage = () => {
   const profileTag = document.getElementById('profile');

@@ -11,7 +11,6 @@ class Router
     public static function route()
     {
         $path = util::getPathArray();
-        $qs = util::getQSDict();
         $method = util::getMethod();
 
         if ('sign_up' === $path[0]) {

@@ -7,7 +7,7 @@ class CommonController
     public static function get()
     {
         $path = util::getPathArray();
-        $qs = util::getQSDict();
+        $qs = util::getQsDict();
         $method = util::getMethod();
 
         util::sendResponse([

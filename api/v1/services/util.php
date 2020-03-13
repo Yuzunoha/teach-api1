@@ -25,7 +25,7 @@ class util
      * '/teach-api1/api/v1/aaa/123/bbb?keyc=ccc&keyd=ddd'
      * [keyc] => ccc, [keyd] => ddd
      */
-    public static function getQSDict()
+    public static function getQsDict()
     {
         $dict = [];
         $qs = explode('?', urldecode($_SERVER['REQUEST_URI']))[1];

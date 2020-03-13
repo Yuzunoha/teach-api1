@@ -22,16 +22,16 @@ class SignUpService
         $passwordConfirmation = $body['sign_up_user_params']['password_confirmation'];
 
         // 未入力ガード
-        if (!isset($name)) {
+        if ('' === $name) {
             return new YuzunohaSnsError('nameを入力してください', 400);
         }
-        if (!isset($bio)) {
+        if ('' === $bio) {
             return new YuzunohaSnsError('bioを入力してください', 400);
         }
-        if (!isset($email)) {
+        if ('' === $email) {
             return new YuzunohaSnsError('emailを入力してください', 400);
         }
-        if (!isset($password)) {
+        if ('' === $password) {
             return new YuzunohaSnsError('passwordを入力してください', 400);
         }
 

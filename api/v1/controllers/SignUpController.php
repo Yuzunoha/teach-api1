@@ -1,13 +1,13 @@
 <?php
 
 require_once dirname(__FILE__) . '/../util.php';
-require_once dirname(__FILE__) . '/../models/YuzunohaSnsUser.php';
+require_once dirname(__FILE__) . '/../services/SignUpService.php';
 
 class SignUpController
 {
     public static function post()
     {
-        $result = YuzunohaSnsUser::insert();
+        $result = SignUpService::signUp();
 
         util::sendResponse($result);
     }

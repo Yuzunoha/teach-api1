@@ -6,7 +6,6 @@ class YuzunohaSnsUser
 {
     public static function insert($name, $bio, $password)
     {
-        // 書き中
         $password_hash = hash('sha256', $password);
         $secret = 'ユズノハさんだよ';
         $tokenSeed = $password_hash . microtime() . $secret;
@@ -15,21 +14,21 @@ class YuzunohaSnsUser
         $sql = 'insert into yuzunoha_sns_user ';
         $sql .= '(name, bio, password_hash, token) ';
         $sql .= 'values (:name, :bio, :password_hash, :token)';
-        $stmt = Db::getPdo()->prepare($sql);
 
-        $stmt->bindValue(':name', 'd');
-        $stmt->bindValue(':bio', 'd');
-        $stmt->bindValue(':password_hash', 'd');
-        $stmt->bindValue(':token', 'd');
-
-        $stmt->execute();
-
+        $params = [
+            ':name' => [$name, PDO::PARAM_STR],
+            ':bio' => [$bio, PDO::PARAM_STR],
+            ':password_hash' => [$password_hash, PDO::PARAM_STR],
+            ':token' => [$token, PDO::PARAM_STR],
+        ];
+        $result = Db::prepareAndExecute($sql, null, true);
+        if (!$result) {
+            /* 失敗 */
+            return null;
+        }
+        /* 成功 */
         $sql2 = 'select * from yuzunoha_sns_user';
-        $stmt2 = Db::getPdo()->prepare($sql2);
-        $stmt2->execute();
-        $result = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return Db::prepareAndExecute($sql2);
     }
 
     public static function selectAll()

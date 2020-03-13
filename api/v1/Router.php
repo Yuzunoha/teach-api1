@@ -1,8 +1,8 @@
 <?php
 
-require_once './services/util.php';
-require_once './controllers/SignUpController.php';
-require_once './controllers/CommonController.php';
+require_once dirname(__FILE__) . '/services/util.php';
+require_once dirname(__FILE__) . '/controllers/SignUpController.php';
+require_once dirname(__FILE__) . '/controllers/CommonController.php';
 
 class Router
 {

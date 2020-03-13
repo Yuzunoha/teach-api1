@@ -49,4 +49,13 @@ class YuzunohaSnsUser
         ];
         return Db::prepareAndExecute($sql, $params);
     }
+
+    public static function selectWhereEmail($email)
+    {
+        $sql = 'SELECT * FROM yuzunoha_sns_user WHERE email = :email';
+        $params = [
+            ':email' => [$email, PDO::PARAM_STR],
+        ];
+        return Db::prepareAndExecute($sql, $params);
+    }
 }

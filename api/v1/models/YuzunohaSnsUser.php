@@ -31,4 +31,12 @@ class YuzunohaSnsUser
 
         return $result;
     }
+
+    public static function selectAll()
+    {
+        $sql = 'select * from yuzunoha_sns_user';
+        $stmt = Db::getPdo()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

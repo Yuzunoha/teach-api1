@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__) . '/../services/util.php';
 require_once dirname(__FILE__) . '/../services/YuzunohaSnsAuthorization.php';
-// require_once dirname(__FILE__) . '/../services/UserService.php';
+require_once dirname(__FILE__) . '/../services/UsersService.php';
 
 class UsersController
 {
@@ -12,6 +12,7 @@ class UsersController
         YuzunohaSnsAuthorization::authTokenAndSendErrorResponse($tokenFromRequestHeader);
         /* 認証OK */
         $qsDict = util::getQsDict();
-        util::sendResponse($qsDict);
+        $result = UsersService::get($qsDict);
+        util::sendResponse($result);
     }
 }

@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . '/../services/util.php';
 require_once dirname(__FILE__) . '/../services/SignUpService.php';
+require_once dirname(__FILE__) . '/../services/YuzunohaSnsError.php';
 
 class SignUpController
 {
@@ -9,6 +10,9 @@ class SignUpController
     {
         $body = util::getRequestJsonObj();
         $result = SignUpService::signUp($body);
+        if ($result instanceof YuzunohaSnsError) {
+            util::sendResponse($result->getBody(), $result->statusCode);
+        }
         util::sendResponse($result);
     }
 }

@@ -7,14 +7,6 @@ class SignUpService
 {
     public static function signUp($body)
     {
-        /*
-        sign_up_user_params:
-        name: ""
-        bio: ""
-        email: ""
-        password: ""
-        password_confirmation: ""
-         */
         $name = $body['sign_up_user_params']['name'];
         $bio = $body['sign_up_user_params']['bio'];
         $email = $body['sign_up_user_params']['email'];
@@ -47,6 +39,14 @@ class SignUpService
             return new YuzunohaSnsError('そのemailは既に登録されています', 400);
         }
 
-        return '開発中';
+        /* ガード突破 */
+        // insert
+        $result = YuzunohaSnsUser::insert($name, $bio, $email, $password);
+        if (!$result) {
+            /* 失敗 */
+            return new YuzunohaSnsError('登録に失敗しました', 500);
+        }
+        /* 成功 */
+        return YuzunohaSnsUser::selectOrderByIdDesc(1)[0];
     }
 }

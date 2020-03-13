@@ -22,13 +22,7 @@ class YuzunohaSnsUser
             ':password_hash' => [$password_hash, PDO::PARAM_STR],
             ':token' => [$token, PDO::PARAM_STR],
         ];
-        $result = Db::prepareAndExecute($sql, null, true);
-        if (!$result) {
-            /* 失敗 */
-            return null;
-        }
-        /* 成功 */
-        return selectOrderByIdDesc(1);
+        return Db::prepareAndExecute($sql, $params, true);
     }
 
     public static function selectAll()

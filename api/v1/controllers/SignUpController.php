@@ -13,6 +13,9 @@ class SignUpController
         if ($result instanceof YuzunohaSnsError) {
             util::sendResponse($result->getBody(), $result->statusCode);
         }
+
+        // これで本家と同じ形
+        unset($result['password_hash']);
         util::sendResponse($result);
     }
 }

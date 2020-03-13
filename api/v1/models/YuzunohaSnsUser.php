@@ -27,8 +27,7 @@ class YuzunohaSnsUser
             return null;
         }
         /* 成功 */
-        $sql2 = 'select * from yuzunoha_sns_user';
-        return Db::prepareAndExecute($sql2);
+        return selectOrderByIdDesc(1);
     }
 
     public static function selectAll()

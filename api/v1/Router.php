@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__) . '/services/util.php';
 require_once dirname(__FILE__) . '/controllers/SignUpController.php';
+require_once dirname(__FILE__) . '/controllers/SignInController.php';
 require_once dirname(__FILE__) . '/controllers/CommonController.php';
 
 class Router
@@ -15,6 +16,11 @@ class Router
         if ('sign_up' === $path[0]) {
             if ('POST' === $method) {
                 SignUpController::post();
+            }
+        }
+        if ('sign_in' === $path[0]) {
+            if ('POST' === $method) {
+                SignInController::post();
             }
         }
 

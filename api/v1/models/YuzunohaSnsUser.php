@@ -4,7 +4,7 @@ require_once dirname(__FILE__) . '/Db.php';
 
 class YuzunohaSnsUser
 {
-    public static function insert($name, $bio, $password)
+    public static function insert($name, $bio, $email, $password)
     {
         $password_hash = hash('sha256', $password);
         $secret = 'ユズノハさんだよ';
@@ -12,12 +12,13 @@ class YuzunohaSnsUser
         $token = hash('sha256', $tokenSeed);
 
         $sql = 'insert into yuzunoha_sns_user ';
-        $sql .= '(name, bio, password_hash, token) ';
-        $sql .= 'values (:name, :bio, :password_hash, :token)';
+        $sql .= '(name, bio, email, password_hash, token) ';
+        $sql .= 'values (:name, :bio, :email, :password_hash, :token)';
 
         $params = [
             ':name' => [$name, PDO::PARAM_STR],
             ':bio' => [$bio, PDO::PARAM_STR],
+            ':email' => [$email, PDO::PARAM_STR],
             ':password_hash' => [$password_hash, PDO::PARAM_STR],
             ':token' => [$token, PDO::PARAM_STR],
         ];

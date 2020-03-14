@@ -21,6 +21,10 @@ class UsersController
     }
     public static function put()
     {
-        util::sendResponse("users::put");
+        $tokenFromRequestHeader = util::getTokenFromRequestHeader();
+        $idFromRequestUri = intval(util::getPathArray()[1]);
+        YuzunohaSnsAuthorization::authTokenAndSendErrorResponse($tokenFromRequestHeader, $idFromRequestUri);
+        /* 認証OK */
+        util::sendResponse("aaa");
     }
 }

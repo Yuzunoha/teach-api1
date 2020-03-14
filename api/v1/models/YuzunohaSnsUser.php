@@ -27,7 +27,8 @@ class YuzunohaSnsUser
 
     public static function selectAll()
     {
-        $sql = 'select * from yuzunoha_sns_user';
+        $sql = 'select * from yuzunoha_sns_user ';
+        $sql .= 'order by updated_at desc';
         return Db::prepareAndExecute($sql);
     }
 
@@ -62,7 +63,8 @@ class YuzunohaSnsUser
 
     public static function selectWhereLikeQuery($query)
     {
-        $sql = 'SELECT * FROM yuzunoha_sns_user WHERE CONCAT(name, bio, email) like :likeQuery';
+        $sql = 'SELECT * FROM yuzunoha_sns_user WHERE CONCAT(name, bio, email) like :likeQuery ';
+        $sql .= 'order by updated_at desc';
         $likeQuery = '%' . $query . '%';
         $params = [
             ':likeQuery' => [$likeQuery, PDO::PARAM_STR],

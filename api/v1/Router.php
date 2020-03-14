@@ -28,6 +28,14 @@ class Router
                 UsersController::get();
             }
         }
+        if ('users' === $path[0]) {
+            if ('PUT' === $method) {
+                UsersController::put();
+            }
+        }
+        /* https://teachapi.herokuapp.com/users/321 */
+        /* {method: "PUT", headers: {…}, body: "{"user_params":{"name":"aa","bio":"ab"}}"} */
+        /* {id: 321, name: "aa", bio: "ab", email: "a", created_at: "2019-", …}  */
 
         CommonController::get();
     }

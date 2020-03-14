@@ -19,4 +19,8 @@ class UsersController
         }
         util::sendResponse($users);
     }
+    public static function put()
+    {
+        util::sendResponse("users::put");
+    }
 }

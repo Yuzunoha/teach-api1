@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once dirname(__FILE__) . '/Db.php';
 
 class YuzunohaSnsUser
@@ -61,6 +63,15 @@ class YuzunohaSnsUser
         return Db::prepareAndExecute($sql, $params);
     }
 
+    public static function selectWhereId(int $userId): array
+    {
+        $sql = 'select * from yuzunoha_sns_user where id = :userId';
+        $params = [
+            ':userId' => [$userId, PDO::PARAM_INT],
+        ];
+        return Db::prepareAndExecute($sql, $params);
+    }
+
     public static function selectWhereLikeQuery($query)
     {
         $sql = 'SELECT * FROM yuzunoha_sns_user WHERE CONCAT(name, bio, email) like :likeQuery ';
@@ -70,5 +81,18 @@ class YuzunohaSnsUser
             ':likeQuery' => [$likeQuery, PDO::PARAM_STR],
         ];
         return Db::prepareAndExecute($sql, $params);
+    }
+
+    public static function update(int $userId, string $name, string $bio): bool
+    {
+        $sql = 'update yuzunoha_sns_user ';
+        $sql .= 'set name = :name, bio = :bio ';
+        $sql .= 'where id = :userId';
+        $params = [
+            ':userId' => [$userId, PDO::PARAM_INT],
+            ':name' => [$name, PDO::PARAM_STR],
+            ':bio' => [$bio, PDO::PARAM_STR],
+        ];
+        return Db::prepareAndExecute($sql, $params, true);
     }
 }

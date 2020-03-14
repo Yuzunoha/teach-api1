@@ -25,6 +25,13 @@ class UsersController
         $idFromRequestUri = intval(util::getPathArray()[1]);
         YuzunohaSnsAuthorization::authTokenAndSendErrorResponse($tokenFromRequestHeader, $idFromRequestUri);
         /* 認証OK */
-        util::sendResponse("aaa");
+        $body = util::getRequestJsonObj();
+        $user = UsersService::put($idFromRequestUri, $body);
+        if ($user instanceof YuzunohaSnsError) {
+            util::sendResponse($user->getBody(), $user->statusCode);
+        }
+        unset($user['password_hash']);
+        unset($user['token']);
+        util::sendResponse($user);
     }
 }

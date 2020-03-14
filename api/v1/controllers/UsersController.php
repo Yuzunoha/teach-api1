@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once dirname(__FILE__) . '/../services/util.php';
 require_once dirname(__FILE__) . '/../services/YuzunohaSnsAuthorization.php';
 require_once dirname(__FILE__) . '/../services/UsersService.php';
@@ -23,7 +25,10 @@ class UsersController
     {
         $tokenFromRequestHeader = util::getTokenFromRequestHeader();
         $idFromRequestUri = intval(util::getPathArray()[1]);
-        YuzunohaSnsAuthorization::authTokenAndSendErrorResponse($tokenFromRequestHeader, $idFromRequestUri);
+        YuzunohaSnsAuthorization::authTokenAndSendErrorResponse(
+            $tokenFromRequestHeader,
+            $idFromRequestUri
+        );
         /* 認証OK */
         $body = util::getRequestJsonObj();
         $user = UsersService::put($idFromRequestUri, $body);

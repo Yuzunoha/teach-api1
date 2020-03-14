@@ -24,8 +24,10 @@ class YuzunohaSnsAuthorization
     /**
      * 認証失敗ならエラーレスポンス送信
      */
-    public static function authTokenAndSendErrorResponse(string $token, int $userId = null): void
-    {
+    public static function authTokenAndSendErrorResponse(
+        string $token,
+        int $userId = null
+    ): void {
         if ($userId) {
             /* tokenがアリかつuserIdと合致すればok */
             $authResult = self::authTokenAndUserId($token, $userId);
